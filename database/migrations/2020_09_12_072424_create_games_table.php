@@ -16,7 +16,9 @@ class CreateGamesTable extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->integer('owner_id');
-            $table->integer('no_of_players');
+            $table->integer('number_of_players');
+            $table->integer('total_game_span');
+            $table->integer('total_game_price');
             $table->timestamps();
         });
     }

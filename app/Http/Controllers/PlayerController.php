@@ -20,11 +20,11 @@ class PlayerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        //
+        return view('players.invite_players');
     }
 
     /**
@@ -35,7 +35,8 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        dd($request->all());
     }
 
     /**
