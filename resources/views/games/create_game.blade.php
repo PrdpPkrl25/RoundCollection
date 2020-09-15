@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">{{ __('Welcome to Dhukuti Game') }}</div>
-                <div class="card-body" style="background-color: rgba(0,0,0,.75);">
+                <div class="card-body" style="background-color: rgba(0,0,0,.50);">
                     <form method="POST" action="{{route('games.store')}}">
                         @csrf
 
@@ -28,6 +28,17 @@
                                 <input id="total_game_span" type="text"
                                        class="form-control text-center"
                                        name="total_game_span" required autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-2 text-center">
+                            <label for="day_played"
+                                   class="col-md-5 col-form-label text-md-right" style="color: white">{{ __('Enter Monthly Game Opening Day:') }}</label>
+
+                            <div class="col-md-3">
+                                <input id="day_played" type="text"
+                                       class="form-control text-center"
+                                       name="day_played" required autofocus>
                             </div>
                         </div>
 

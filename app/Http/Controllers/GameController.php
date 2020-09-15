@@ -11,11 +11,12 @@ class GameController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-
+        $games=Game::where('owner_id',Auth::id())->get();
+        return view('games.list_games',compact('games'));
     }
 
     /**
@@ -25,6 +26,7 @@ class GameController extends Controller
      */
     public function create()
     {
+        session()->forget('game');
         return view('games.create_game');
     }
 
@@ -38,7 +40,8 @@ class GameController extends Controller
     {
 
         $ownerId=Auth::id();
-        $game=Game::create($request->all()+['owner_id'=>$ownerId]);
+        $game=Game::create($request->all()+['owner_id'=>$ownerId,'start_date'=>date("Y-m-d")]);
+        session()->put('game',$game);
         return redirect()->route('players.create');
     }
 
@@ -46,11 +49,11 @@ class GameController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Game  $game
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Game $game)
     {
-        //
+        return view('games.show_game',compact('game'));
     }
 
     /**

@@ -13,16 +13,15 @@
                                     <div class="row">
                                             <div class="col-md-4 text-center offset-md-1">
                                                 <strong>Participant Name:</strong>
-                                                <input type="text" name="name[]" class="form-control mt-2">
+                                                <input type="text" name="player_name[]" class="form-control mt-2">
                                             </div>
                                             <div class="col-md-6 text-center">
                                                 <strong>Email:</strong>
-                                                <input type="text" name="description[]" class="form-control mt-2 mb-4">
+                                                <input type="text" name="email[]" class="form-control mt-2 mb-4">
                                             </div>
 
                                     </div>
                                 </div>
-
                                 <span class="fa fa-plus add text-dark " style="font-size: 1.2em"></span>
                             </div>
 
@@ -48,11 +47,11 @@
             $('.add').on('click', function() {
                 var field = '<br><div class="row"><div class="col-md-4 offset-md-1 text-center">' +
                     '<strong>Participant Name:</strong> ' +
-                    '<input type="text" name="name[]"  class="form-control mt-2"> ' +
+                    '<input type="text" name="player_name[]"  class="form-control mt-2"> ' +
                     '</div>'+
                     '<div class="col-md-6  text-center">' +
                     ' <strong>Email:</strong> ' +
-                    ' <input type="text" name="description[]"  class="form-control mt-2 mb-4">' +
+                    ' <input type="text" name="email[]"  class="form-control mt-2 mb-4">' +
                     '</div>'+
                     '</div>';
                 $('.appending_div').append(field);

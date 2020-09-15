@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Player;
+use App\Repository\PlayerRepository;
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
 {
+    private $playerRepository;
+
+    public function __construct(PlayerRepository $playerRepository){
+        $this->playerRepository=$playerRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +31,7 @@ class PlayerController extends Controller
      */
     public function create()
     {
+
         return view('players.invite_players');
     }
 
@@ -31,12 +39,13 @@ class PlayerController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
+        $this->playerRepository->handleCreate($request);
+        return redirect()->route('games.list');
 
-        dd($request->all());
     }
 
     /**

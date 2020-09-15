@@ -24,8 +24,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/games/create', 'GameController@create')->name('games.create');
 Route::post('/games', 'GameController@store')->name('games.store');
+Route::get('/games/list', 'GameController@index')->name('games.list');
+Route::get('/game/{game_id}', 'GameController@show')->name('game.show')->middleware('players.invite');
+
+Route::get('/rounds/create', 'RoundController@create')->name('rounds.create');
+Route::get('/rounds', 'RoundController@store')->name('rounds.store');
 
 Route::get('/players/create', 'PlayerController@create')->name('players.create');
 Route::post('/players', 'PlayerController@store')->name('players.store');
+
+Route::get('/user/profile', 'UserController@show')->name('user.profile');
 
 Route::get('/game/{id}', 'GameController@show')->name('code.input.page');

@@ -14,11 +14,14 @@ class CreateGamesTable extends Migration
     public function up()
     {
         Schema::create('games', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->integer('owner_id');
             $table->integer('number_of_players');
-            $table->integer('total_game_span');
+            $table->string('total_game_span');
             $table->integer('total_game_price');
+            $table->string('day_played');
+            $table->date('start_date');
+            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }
