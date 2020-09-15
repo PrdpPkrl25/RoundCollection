@@ -8,29 +8,28 @@ class CreateRoundsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
     {
-        Schema::create('rounds', function (Blueprint $table) {
-            $table->id();
-            $table->integer('number_of_rounds');
-            $table->integer('game_id');
-            $table->integer('winner_id');
-            $table->string('winning_bid');
-            $table->string('round_payment');
-            $table->timestamps();
+        Schema ::create('rounds', function (Blueprint $table) {
+            $table -> id();
+            $table -> dateTime('quotation_open_time');
+            $table -> dateTime('quotation_end_time');
+            $table -> dateTime('round_open_time');
+            $table -> integer('winner_quotation_id');
+            $table -> decimal('round_payment', 10, 2);
+            $table -> decimal('bhupa_amount', 10, 2);
+            $table -> timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('rounds');
+        Schema ::dropIfExists('rounds');
     }
 }

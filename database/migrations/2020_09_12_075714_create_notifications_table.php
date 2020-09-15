@@ -8,25 +8,25 @@ class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
-            $table->id();
-            $table->string('message');
-            $table->timestamps();
+        Schema ::create('notifications', function (Blueprint $table) {
+            $table -> id();
+            $table -> string('message');
+            $table -> integer('user_id') -> nullable();
+            $table -> dateTime('read_at') -> nullable();
+            $table -> timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('notifications');
+        Schema ::dropIfExists('notifications');
     }
 }

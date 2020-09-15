@@ -8,27 +8,27 @@ class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
-            $table->id();
-            $table->string('bid_amount');
-            $table->string('round_id');
-            $table->string('player_id');
-            $table->timestamps();
+        Schema ::create('payments', function (Blueprint $table) {
+            $table -> id();
+            $table -> integer('round_id');
+            $table -> integer('user_id');
+            $table -> dateTime('notified_at') -> nullable();
+            $table -> dateTime('paid_at') -> nullable();
+            $table -> decimal('kista_amount',10,2);
+            $table -> timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema ::dropIfExists('payments');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Round;
+use App\Model\Round;
 use Illuminate\Http\Request;
 
 class RoundController extends Controller
