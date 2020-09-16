@@ -64,6 +64,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'api-login'=>\App\Http\Middleware\ApiLogin::class,
-        'players.invite'=>\App\Http\Middleware\InvitePlayers::class,
+        'participants.invite'=>\App\Http\Middleware\InvitePlayers::class,
     ];
 }

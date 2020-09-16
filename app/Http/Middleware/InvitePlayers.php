@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Game;
+use App\Model\Game;
 use Closure;
 
 class InvitePlayers
@@ -18,11 +18,10 @@ class InvitePlayers
     {
         $gameId=$request->route('game_id');
         $game=Game::where('id',$gameId)->first();
-        $players=$game->players()->get();
-        session()->put('game',$game);
+        $players=$game->participants()->get();
         if($players->isEmpty())
         {
-            return redirect()->route('players.create');
+            return redirect()->route('participants.invite',$game->id);
         }
         return $next($request);
     }

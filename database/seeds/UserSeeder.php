@@ -1,7 +1,8 @@
 <?php
 
-use App\User;
+use App\Model\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -14,7 +15,6 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->truncate();
-        factory(User::class,20)->create();
         User::create([
             'name'=>'Pradip Pokhrel',
             'email'=>'Pradip.Pokhrel25@gmail.com',

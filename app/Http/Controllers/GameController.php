@@ -30,7 +30,7 @@ class GameController extends Controller
      */
     public function index()
     {
-        $games = Game ::where('owner_id', Auth ::id()) -> get();
+        $games = Game ::where('user_id', Auth ::id()) -> get();
         return view('games.list_games', compact('games'));
     }
 
@@ -50,8 +50,8 @@ class GameController extends Controller
      */
     public function store(StoreGameRequest $request)
     {
-        $game = $this -> gameRepository -> handleCreate($request);
-        return redirect() -> route('players.create');
+        $game = $this -> gameRepository -> handleCreate($request->all());
+        return redirect() -> route('participants.invite',$game->id);
     }
 
     /**

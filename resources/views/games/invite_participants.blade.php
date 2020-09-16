@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card align-content-between">
                     <div class="card-header">Invite Participants:</div>
-                    <form method="post" action="{{ route('players.store') }}"  enctype="multipart/form-data">
+                    <form method="post" action="{{ route('participants.store',$gameId) }}"  enctype="multipart/form-data">
                         @csrf
                             <div class="card-body text-center">
                                 <div class="col-md-12 appending_div form-group">
@@ -47,7 +47,7 @@
             $('.add').on('click', function() {
                 var field = '<br><div class="row"><div class="col-md-4 offset-md-1 text-center">' +
                     '<strong>Participant Name:</strong> ' +
-                    '<input type="text" name="player_name[]"  class="form-control mt-2"> ' +
+                    '<input type="text" name="name[]"  class="form-control mt-2"> ' +
                     '</div>'+
                     '<div class="col-md-6  text-center">' +
                     ' <strong>Email:</strong> ' +

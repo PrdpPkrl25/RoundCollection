@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Round;
+use App\Model\User;
+use App\Repository\ParticipantRepository;
 use Illuminate\Http\Request;
 
-class RoundController extends Controller
+class ParticipantController extends Controller
 {
+    private $participantRepository;
+
+    public function __construct(ParticipantRepository $participantRepository)
+    {
+        $this->participantRepository=$participantRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,31 +27,34 @@ class RoundController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param $gameId
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create($gameId)
     {
-        return view('games.add_rounds',compact('game'));
+        return view('games.invite_participants',compact('gameId'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param $gameId
+     * @return void
      */
-    public function store(Request $request)
+    public function store(Request $request,$gameId)
     {
-        //
+        $this->participantRepository->handleCreate($request->all(),$gameId);
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Round  $round
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Round $round)
+    public function show($id)
     {
         //
     }
@@ -52,10 +62,10 @@ class RoundController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Round  $round
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Round $round)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +74,10 @@ class RoundController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Round  $round
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Round $round)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +85,10 @@ class RoundController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Round  $round
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Round $round)
+    public function destroy($id)
     {
         //
     }
