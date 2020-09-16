@@ -28,7 +28,7 @@ class ParticipantAddedNotification
     public function handle(ParticipantAdded $event)
     {
         Notification::create([
-            'message'=>'You have been added to the Dhukuti game by'.$event->game->owner->name,
+            'message'=>'You have been added to the Dhukuti game by '.$event->game->owner->name,
             'user_id'=>$event->user->id,
         ]);
     }

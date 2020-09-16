@@ -28,9 +28,9 @@ class GameRepository
         Round::create([
             'game_id'=>$game->id,
             'round_number'=>$i,
-            'quotation_open_time'=>Carbon::parse($game->start_date)->addMonths($i)->format('Y-M-'.$game->quotation_day.' '.$game->quotation_time),
-            'quotation_end_time'=>Carbon::parse($game->start_date)->addMonths($i)->format('Y-M-'.$game->quotation_day.' '.$game->quotation_time),
-            'round_open_time'=>Carbon::parse($game->start_date)->addMonths($i)->format('Y-M-'.$game->opening_day.' '.$game->opening_time),
+            'quotation_open_time'=>Carbon::parse($game->start_date)->addMonths($i)->format('Y-m-'.$game->quotation_day.' '.$game->quotation_time),
+            'quotation_end_time'=>Carbon::parse($game->start_date)->addMonths($i)->format('Y-m-'.$game->quotation_day.' '.$game->quotation_time),
+            'round_open_time'=>Carbon::parse($game->start_date)->addMonths($i)->format('Y-m-'.$game->opening_day.' '.$game->opening_time),
             'bhupa_amount'=>$game->bhupa_amount,
         ]);
     }

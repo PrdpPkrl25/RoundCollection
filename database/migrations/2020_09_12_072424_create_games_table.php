@@ -25,7 +25,6 @@ class CreateGamesTable extends Migration
             $table -> integer('quotation_length');
             $table -> time('opening_time');
             $table -> dateTime('start_date');
-            $table -> dateTime('end_date');
             $table -> boolean('active_status')->default(0);
             $table -> string('pay_interval')->default('monthly');
             $table -> decimal('bhupa_amount',10,2);

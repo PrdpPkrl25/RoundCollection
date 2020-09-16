@@ -142,17 +142,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mt-2 text-center">
-                            <label for="end_date"
-                                   class="col-md-5 col-form-label text-md-right" style="color: white">{{ __('Enter Dhukuti End Date:') }}</label>
-
-                            <div class="col-md-3">
-                                <input id="end_date" type="date"
-                                       class="form-control text-center"
-                                       name="end_date" required autofocus>
-                            </div>
-                        </div>
-
 
                         <div class="form-group row mb-0">
                             <div class="col-md-3 offset-md-5  text-center">
