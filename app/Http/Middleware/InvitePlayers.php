@@ -16,8 +16,7 @@ class InvitePlayers
      */
     public function handle($request, Closure $next)
     {
-        $gameId=$request->route('game_id');
-        $game=Game::findOrFail($gameId);
+        $game=$request->route('game');
         $players=$game->participants()->get();
         if(count($players)<$game->number_of_participants)
         {

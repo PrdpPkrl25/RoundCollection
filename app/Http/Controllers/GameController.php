@@ -124,6 +124,16 @@ class GameController extends Controller
         return view('games.show_game', compact('game'));
     }
 
+    public function allRounds(Game $game)
+    {
+        return view('games.rounds', compact('game'));
+    }
+
+    public function info(Game $game)
+    {
+        return view('games.game_details', compact('game'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      * @param  Game $game

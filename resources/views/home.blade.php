@@ -17,7 +17,7 @@
                             @for($i=0;$i<count($games);$i++)
                                 <div class="col-sm-4 py-2">
                                     <div class="card bg-secondary shadow text-center h-100 ">
-                                        <a class="text-white shadow  " href="{{route('game.show',$games[$i]->id)}}">
+                                        <a class="text-white shadow  " href="{{route('games.show',$games[$i]->id)}}">
                                             <div class="card-body ">
                                                 <h3 class=" mt-4"> DHUKUTI RASHI Rs{{$games[$i]->total_amount}}</h3>
                                                 <h3 class=" mt-2"> TOTAL

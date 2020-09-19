@@ -30,7 +30,11 @@ Route::post('/games/add-days', 'GameController@postAddDays')->name('games.days.p
 Route::get('/games/create/add-datetime', 'GameController@addDateTime')->name('games.datetime.add');
 Route::post('/games/create', 'GameController@store')->name('games.store');
 Route::get('/games/list', 'GameController@index')->name('games.list');
-Route::get('/game/{game_id}', 'GameController@show')->name('game.show')->middleware('participants.invite');
+Route::get('/games/{game}', 'GameController@show')->name('games.show')->middleware('participants.invite');
+Route::get('/games/{game}/rounds', 'GameController@allRounds')->name('games.show.rounds');
+Route::get('/games/{game}/details', 'GameController@info')->name('games.show.details');
+
+
 
 Route::get('/participants/{game}/invite', 'ParticipantController@create')->name('participants.invite');
 Route::post('/participants/{game}', 'ParticipantController@store')->name('participants.store');
