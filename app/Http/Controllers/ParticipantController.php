@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreParticipantRequest;
+use App\Model\Game;
 use App\Model\User;
 use App\Repository\ParticipantRepository;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ParticipantController extends Controller
@@ -27,24 +30,28 @@ class ParticipantController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param $gameId
+     * @param Game $game
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create($gameId)
+    public function create(Game $game)
     {
-        return view('games.invite_participants',compact('gameId'));
+        $playerIds=$game->participants()->pluck('user_id');
+        $totalPlayers=count($playerIds);
+        $remaningPlayers=$game->number_of_participants-$totalPlayers;
+        return view('games.invite_participants',compact('game','totalPlayers','remaningPlayers'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param $gameId
-     * @return void
+     * @param StoreParticipantRequest $request
+     * @param Game $game
+     * @return RedirectResponse
      */
-    public function store(Request $request,$gameId)
+    public function store(StoreParticipantRequest $request,Game $game)
     {
-        $this->participantRepository->handleCreate($request->all(),$gameId);
+        $this->participantRepository->handleCreate($request->all(),$game);
+        return redirect()->route('home');
 
     }
 

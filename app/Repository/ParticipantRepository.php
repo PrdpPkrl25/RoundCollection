@@ -11,10 +11,8 @@ use Illuminate\Support\Str;
 
 class ParticipantRepository
 {
-    public function handleCreate($data, $gameId)
+    public function handleCreate($data, $game)
     {
-
-        $game = Game ::findOrFail($gameId);
         $number_of_participants = count($data['name']);
         for($i = 0; $i < $number_of_participants; $i++) {
             $user = $this -> checkIfUserExist($data['email'][$i]);

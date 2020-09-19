@@ -17,9 +17,9 @@ class InvitePlayers
     public function handle($request, Closure $next)
     {
         $gameId=$request->route('game_id');
-        $game=Game::where('id',$gameId)->first();
+        $game=Game::findOrFail($gameId);
         $players=$game->participants()->get();
-        if($players->isEmpty())
+        if(count($players)<$game->number_of_participants)
         {
             return redirect()->route('participants.invite',$game->id);
         }

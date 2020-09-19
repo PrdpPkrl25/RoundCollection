@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="wrapper">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}">
@@ -61,11 +61,6 @@
                                     </a>
 
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{{ route('games.list') }}">
-                                        {{ __('View Dhukuti') }}
-                                    </a>
-
-                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -83,18 +78,15 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            <div class="container">
-                @foreach ($errors->all() as $message)
+        <main class="container-fluid">
+            @foreach ($errors->all() as $message)
                     <div class="alert alert-danger text-center" role="alert">
                         {{$message}}
                     </div>
-                @endforeach
-                @yield('content')
-            </div>
-
-    @yield('script')
+            @endforeach
+            @yield('content')
         </main>
     </div>
+    @yield('script')
 </body>
 </html>

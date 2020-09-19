@@ -6,19 +6,22 @@
             <div class="col-md-12">
                 <div class="card align-content-between">
                     <div class="card-header">Invite Participants:</div>
-                    <form method="post" action="{{ route('participants.store',$gameId) }}"  enctype="multipart/form-data">
+                    <form method="post" action="{{ route('participants.store',$game->id) }}"  enctype="multipart/form-data">
                         @csrf
                             <div class="card-body text-center">
                                 <div class="col-md-12 appending_div form-group">
                                     <div class="row">
-                                            <div class="col-md-4 text-center offset-md-1">
-                                                <strong>Participant Name:</strong>
-                                                <input type="text" name="player_name[]" class="form-control mt-2">
-                                            </div>
-                                            <div class="col-md-6 text-center">
-                                                <strong>Email:</strong>
-                                                <input type="text" name="email[]" class="form-control mt-2 mb-4">
-                                            </div>
+                                        <div class="col-md-1 text-center mt-4">
+                                            <span class="font-weight-bold">{{$totalPlayers+1}}.</span>
+                                            <p hidden id="initial-count">{{$totalPlayers+1}}</p>
+                                            <p  hidden id="second-count">{{$remaningPlayers}}</p>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                                <input type="text" name="name[]" class="form-control mt-2" placeholder="Enter Participant Name...">
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                                <input type="text" name="email[]" class="form-control mt-2 mb-2" placeholder="Enter Participant Email...">
+                                        </div>
 
                                     </div>
                                 </div>
@@ -43,18 +46,29 @@
 @section('script')
     <script type="text/javascript">
         $(document).ready(function() {
-            var i=1;
-            $('.add').on('click', function() {
-                var field = '<br><div class="row"><div class="col-md-4 offset-md-1 text-center">' +
-                    '<strong>Participant Name:</strong> ' +
-                    '<input type="text" name="name[]"  class="form-control mt-2"> ' +
-                    '</div>'+
-                    '<div class="col-md-6  text-center">' +
-                    ' <strong>Email:</strong> ' +
-                    ' <input type="text" name="email[]"  class="form-control mt-2 mb-4">' +
-                    '</div>'+
-                    '</div>';
-                $('.appending_div').append(field);
+            var total_players=$('#initial-count').html();
+            var remaning_players=$('#second-count').html();
+            var x=1;
+
+            $('.add').on('click', function(e) {
+                e.preventDefault();
+                if(x<remaning_players){
+                    var i=++total_players
+                    var field = '<br><div class="row">' +
+                        '<div class="col-md-1 text-center mt-4">'+
+                        '<span class="font-weight-bolder">'+ i +'</span>'+
+                        '</div>'+
+                        '<div class="col-md-4 text-center">' +
+                        '<input type="text" name="name[]" placeholder="Enter Participant Name..." class="form-control mt-2"> ' +
+                        '</div>'+
+                        '<div class="col-md-6  text-center">' +
+                        ' <input type="text" name="email[]" placeholder="Enter Participant Email..." class="form-control mt-2 mb-2">' +
+                        '</div>'+
+                        '</div>';
+                    $('.appending_div').append(field);
+                    x++;
+                }
+
             })
         })
     </script>

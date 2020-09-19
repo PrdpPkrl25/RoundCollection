@@ -23,15 +23,20 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/games/create', 'GameController@create')->name('games.create');
-Route::post('/games', 'GameController@store')->name('games.store');
+Route::get('/games/create/add-numbers', 'GameController@addNumbers')->name('games.numbers.add');
+Route::post('/games/add-numbers', 'GameController@postAddNumbers')->name('games.numbers.post');
+Route::get('/games/create/add-days', 'GameController@addDays')->name('games.days.add');
+Route::post('/games/add-days', 'GameController@postAddDays')->name('games.days.post');
+Route::get('/games/create/add-datetime', 'GameController@addDateTime')->name('games.datetime.add');
+Route::post('/games/create', 'GameController@store')->name('games.store');
 Route::get('/games/list', 'GameController@index')->name('games.list');
 Route::get('/game/{game_id}', 'GameController@show')->name('game.show')->middleware('participants.invite');
 
-Route::get('/participants/{game_id}/invite', 'ParticipantController@create')->name('participants.invite');
-Route::post('/participants/{game_id}', 'ParticipantController@store')->name('participants.store');
+Route::get('/participants/{game}/invite', 'ParticipantController@create')->name('participants.invite');
+Route::post('/participants/{game}', 'ParticipantController@store')->name('participants.store');
 
-Route::get('/rounds/add', 'RoundController@create')->name('rounds.add');
-Route::post('/rounds', 'RoundController@store')->name('rounds.store');
+Route::get('/rounds/{round_id}/edit', 'RoundController@edit')->name('rounds.edit');
+Route::post('/rounds/', 'RoundController@update')->name('rounds.update');
 
 Route::get('/user/profile', 'UserController@show')->name('user.profile');
 

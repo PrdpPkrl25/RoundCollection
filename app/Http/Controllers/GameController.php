@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreGameRequest;
 use App\Model\Game;
+use App\Model\Round;
 use App\Repository\GameRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +41,63 @@ class GameController extends Controller
      */
     public function create()
     {
+        session()->forget('game');
         return view('games.create_game');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function addNumbers(Request $request){
+        $game = $request->session()->get('game');
+        return view('games.add_numbers',compact('game'));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postAddNumbers(Request $request){
+        if(empty($request->session()->get('game'))){
+            $game = new Game();
+            $game->fill($request->all());
+            $request->session()->put('game', $game);
+        }else{
+            $game = $request->session()->get('game');
+            $game->fill($request->all());
+            $request->session()->put('game', $game);
+        }
+      return redirect()->route('games.days.add');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function addDays(Request $request){
+        $game = $request->session()->get('game');
+        return view('games.add_days',compact('game'));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postAddDays(Request $request){
+        $game = $request->session()->get('game');
+        $game->fill($request->all());
+        $request->session()->put('game', $game);
+        return redirect()->route('games.datetime.add');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function addDateTime(Request $request){
+        $game = $request->session()->get('game');
+        return view('games.add_datetime',compact('game'));
     }
 
     /**
@@ -50,7 +107,10 @@ class GameController extends Controller
      */
     public function store(StoreGameRequest $request)
     {
-        $game = $this -> gameRepository -> handleCreate($request->all());
+        $game = $request->session()->get('game');
+        $game->fill($request->all());
+        $game = $this -> gameRepository -> handleCreate($game);
+        $request->session()->forget('game');
         return redirect() -> route('participants.invite',$game->id);
     }
 

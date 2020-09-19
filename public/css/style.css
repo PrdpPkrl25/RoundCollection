@@ -20,6 +20,9 @@
     font-size: 120%;
 }
 
+.main-panel{
+    width: 100%;
+}
 footer{
     position:fixed;
     bottom:0;
@@ -34,6 +37,20 @@ footer{
     font-size: 1.2em;
 }
 
+a:hover{
+    text-decoration: none;
+    color: #686868;
+}
+
+.card .nav-link{
+    color: #f7f7f7;
+}
+
+.card .nav-link.active {
+    border: none;
+    background-color:#343a43;
+    color: #f7f7f7;
+}
 
 
 .flex-center {

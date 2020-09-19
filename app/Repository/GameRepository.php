@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: prakashpokhrel
- * Date: 2020-09-15
- * Time: 20:27
- */
 
 namespace App\Repository;
 
@@ -16,9 +10,14 @@ use Carbon\Carbon;
 class GameRepository
 {
 
-    public function handleCreate($data)
+
+
+    public function handleCreate($game)
     {
-        $game = Game ::create($data + ['user_id' => auth() -> id()]);
+        $total_months=$game->number_of_participants;
+        $game->end_date=Carbon::parse($game->start_date)->addMonths($total_months)->format('Y-m-d');
+        $game->user_id=auth()->id();
+        $game->save();
         $this->createRound($game);
         return $game;
     }
@@ -34,5 +33,6 @@ class GameRepository
             'bhupa_amount'=>$game->bhupa_amount,
         ]);
     }
+
     }
 }
