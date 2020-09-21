@@ -6,6 +6,7 @@ use App\Http\Requests\StoreGameRequest;
 use App\Model\Game;
 use App\Model\Round;
 use App\Repository\GameRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -121,12 +122,16 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        return view('games.show_game', compact('game'));
+        $previousRound=$game->rounds()->where('quotation_open_time','<',today())->orderBy('id','desc')->first();
+        if(!$previousRound){
+            $previousRound=$game->rounds()->where('quotation_open_time','>',today())->first();
+        }
+        return view('games.show_game', compact('game','previousRound'));
     }
 
     public function allRounds(Game $game)
     {
-        return view('games.rounds', compact('game'));
+        return view('games.rounds.rounds_list', compact('game'));
     }
 
     public function info(Game $game)

@@ -20,6 +20,7 @@ class CreateRoundsTable extends Migration
             $table -> dateTime('quotation_end_time');
             $table -> dateTime('round_open_time');
             $table -> integer('winner_quotation_id')->nullable();
+            $table -> integer('minimum_bid_amount')->nullable();
             $table -> decimal('round_payment', 10, 2)->nullable();
             $table -> decimal('bhupa_amount', 10, 2);
             $table -> timestamps();

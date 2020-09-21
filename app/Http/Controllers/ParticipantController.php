@@ -38,7 +38,7 @@ class ParticipantController extends Controller
         $playerIds=$game->participants()->pluck('user_id');
         $totalPlayers=count($playerIds);
         $remaningPlayers=$game->number_of_participants-$totalPlayers;
-        return view('games.invite_participants',compact('game','totalPlayers','remaningPlayers'));
+        return view('games.participants.invite_participants',compact('game','totalPlayers','remaningPlayers'));
     }
 
     /**

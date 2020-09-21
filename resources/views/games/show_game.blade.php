@@ -17,12 +17,10 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{route('games.show.details',$game->id)}}">Game Details</a>
                                     </li>
-
-
                                 </ul>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title text-white">Welcome to Round</h5>
+                                <h5 class="card-title text-white">Welcome to Kista {{$previousRound->round_number}}</h5>
                                 <p class="card-text">.</p>
                             </div>
                         </div>

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreQuotationRequest;
+use App\Model\Game;
 use App\Model\Quotation;
+use App\Model\Round;
 use App\Repository\QuotationRepository;
 use Illuminate\Http\Request;
 
@@ -33,22 +36,23 @@ class QuotationController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     * @return \Illuminate\Http\Response
+     * @param Round $round
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create(Round $round)
     {
-        //create view
-        return view();
+        return view('games.quotation.fill_quotation',compact('round'));
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param StoreQuotationRequest $request
+     * @param Round $round
+     * @return void
      */
-    public function store(Request $request)
+    public function store(StoreQuotationRequest $request,Round $round)
     {
-        $this -> quotationRepository -> handleCreate($request -> all());
+        $this -> quotationRepository -> handleCreate($request -> all(),$round);
     }
 
     /**
