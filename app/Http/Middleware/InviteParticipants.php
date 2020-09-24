@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use App\Model\Game;
 use Closure;
 
-class InvitePlayers
+class InviteParticipants
 {
     /**
      * Handle an incoming request.

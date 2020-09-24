@@ -43,9 +43,9 @@ class CheckRound extends Command
     public function handle()
     {
         $rounds=Round::where('quotation_open_time',now()->format('Y-m-d H:i'))->get();
-        dump($rounds);
         foreach ($rounds as $round){
-            $participants=$round->game->participants();
+            $participants=$round->game->participants()->get();
+            dump($participants);
             QuotationMailJob::dispatch($participants,$round);
         }
         return 0;

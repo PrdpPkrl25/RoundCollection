@@ -12,4 +12,9 @@ class Round extends Model
     public function game(){
         return $this->belongsTo(Game::class,'game_id');
     }
+
+
+    public function quotations(){
+        return $this->hasMany(Quotation::class,'round_id');
+    }
 }

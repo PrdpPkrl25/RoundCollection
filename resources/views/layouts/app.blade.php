@@ -84,9 +84,16 @@
                         {{$message}}
                     </div>
             @endforeach
+            <div class="text-center">
+                @include('flash::message')
+            </div>
+
             @yield('content')
         </main>
     </div>
     @yield('script')
+    <script>
+        $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+    </script>
 </body>
 </html>

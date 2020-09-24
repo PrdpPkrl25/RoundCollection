@@ -23,6 +23,7 @@ class QuotationController extends Controller
     public function __construct(QuotationRepository $quotationRepository)
     {
         $this -> quotationRepository = $quotationRepository;
+        $this->middleware('auth');
     }
 
     /**
@@ -48,11 +49,12 @@ class QuotationController extends Controller
      * Store a newly created resource in storage.
      * @param StoreQuotationRequest $request
      * @param Round $round
-     * @return void
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(StoreQuotationRequest $request,Round $round)
     {
         $this -> quotationRepository -> handleCreate($request -> all(),$round);
+        return redirect()->route('games.show',$round->game->id);
     }
 
     /**

@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'api-login'=>\App\Http\Middleware\ApiLogin::class,
-        'participants.invite'=>\App\Http\Middleware\InvitePlayers::class,
+        'participants.invite'=>\App\Http\Middleware\InviteParticipants::class,
+        'time.restriction'=>\App\Http\Middleware\TimeBasedRestriction::class,
     ];
 }

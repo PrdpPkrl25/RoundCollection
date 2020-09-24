@@ -42,8 +42,9 @@ Route::post('/participants/{game}', 'ParticipantController@store')->name('partic
 Route::get('/rounds/{round_id}/edit', 'RoundController@edit')->name('rounds.edit');
 Route::post('/rounds/', 'RoundController@update')->name('rounds.update');
 
-Route::get('/quotation/{round}/add','QuotationController@create')->name('quotations.create');
-Route::post('/quotations/{round}','QuotationController@post')->name('quotations.post');
+Route::get('/quotation/{round}/add','QuotationController@create')->name('quotations.create')->middleware('time.restriction');
+Route::post('/quotations/{round}','QuotationController@store')->name('quotations.post');
 
 Route::get('/user/profile', 'UserController@show')->name('user.profile');
+
 

@@ -17,6 +17,7 @@ class CreateNotificationsTable extends Migration
             $table -> string('message');
             $table -> integer('user_id') -> nullable();
             $table -> dateTime('read_at') -> nullable();
+            $table -> dateTime('send_at') -> nullable();
             $table -> timestamps();
         });
     }

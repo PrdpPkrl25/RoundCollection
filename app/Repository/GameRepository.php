@@ -24,14 +24,13 @@ class GameRepository
 
     public function createRound($game){
     for($i=1;$i<=$game->number_of_participants;$i++){
-        Round::create([
-            'game_id'=>$game->id,
+        $roundArray=['game_id'=>$game->id,
             'round_number'=>$i,
             'quotation_open_time'=>Carbon::parse($game->start_date)->addMonths($i)->format('Y-m-'.$game->quotation_day.' '.$game->quotation_time),
-            'quotation_end_time'=>Carbon::parse($game->start_date)->addMonths($i)->format('Y-m-'.$game->quotation_day.' '.$game->quotation_time),
             'round_open_time'=>Carbon::parse($game->start_date)->addMonths($i)->format('Y-m-'.$game->opening_day.' '.$game->opening_time),
-            'bhupa_amount'=>$game->bhupa_amount,
-        ]);
+            'bhupa_amount'=>$game->bhupa_amount];
+        $roundArray['quotation_end_time']=Carbon::parse($roundArray['quotation_open_time'])->addHours($game->quotation_length);
+        Round::create($roundArray);
     }
 
     }
