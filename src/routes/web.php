@@ -39,8 +39,8 @@ Route::get('/games/{game}/details', 'GameController@info')->name('games.show.det
 Route::get('/participants/{game}/invite', 'ParticipantController@create')->name('participants.invite');
 Route::post('/participants/{game}', 'ParticipantController@store')->name('participants.store');
 
-Route::get('/rounds/{round_id}/edit', 'RoundController@edit')->name('rounds.edit');
-Route::post('/rounds/', 'RoundController@update')->name('rounds.update');
+Route::get('/rounds/{round}/edit', 'RoundController@edit')->name('rounds.edit');
+Route::post('/rounds/{round_id}', 'RoundController@update')->name('rounds.update');
 
 Route::get('/quotation/{round}/add','QuotationController@create')->name('quotations.create')->middleware('time.restriction');
 Route::post('/quotations/{round}','QuotationController@store')->name('quotations.post');

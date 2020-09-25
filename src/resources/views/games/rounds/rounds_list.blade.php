@@ -28,6 +28,7 @@
                                     <th scope="col">Round Number</th>
                                     <th scope="col">Round Open Time</th>
                                     <th scope="col">Round Payment</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -36,6 +37,7 @@
                                     <td>{{$round->round_number}}</td>
                                     <td>{{$round->round_open_time}}</td>
                                     <td>{{$round->round_payment='Null' ? 'Not Decided Yet' : $round->round_payment}}</td>
+                                    <td><a class="font-weight-bold" style="font-size:24px" href="{{route('rounds.edit',$round->id)}}"><i class="fa fa-edit"></i></a></td>
                                 </tr>
                                 @endforeach
                                 </tbody>
