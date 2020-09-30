@@ -17,4 +17,10 @@ class Round extends Model
     public function quotations(){
         return $this->hasMany(Quotation::class,'round_id');
     }
+
+    public function winningQuotation(){
+        return $this->belongsTo(Quotation::class,'winner_quotation_id');
+    }
+
+
 }

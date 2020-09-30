@@ -38,12 +38,26 @@ class GameController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
-        session()->forget('game');
-        return view('games.create_game');
+        $game = $request->session()->get('game');
+        return view('games.create_game',compact('game'));
+    }
+
+    public function store(Request $request){
+        if(empty($request->session()->get('game'))){
+            $game = new Game();
+            $game->fill($request->all());
+            $request->session()->put('game', $game);
+        }else{
+            $game = $request->session()->get('game');
+            $game->fill($request->all());
+            $request->session()->put('game', $game);
+        }
+        return redirect()->route('games.numbers.add');
     }
 
     /**
@@ -60,15 +74,9 @@ class GameController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postAddNumbers(Request $request){
-        if(empty($request->session()->get('game'))){
-            $game = new Game();
-            $game->fill($request->all());
-            $request->session()->put('game', $game);
-        }else{
-            $game = $request->session()->get('game');
-            $game->fill($request->all());
-            $request->session()->put('game', $game);
-        }
+        $game = $request->session()->get('game');
+        $game->fill($request->all());
+        $request->session()->put('game', $game);
       return redirect()->route('games.days.add');
     }
 
@@ -106,7 +114,7 @@ class GameController extends Controller
      * @param StoreGameRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreGameRequest $request)
+    public function postDateTime(StoreGameRequest $request)
     {
         $game = $request->session()->get('game');
         $game->fill($request->all());

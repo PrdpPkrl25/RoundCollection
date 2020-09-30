@@ -16,7 +16,7 @@ class CreateQuotationsTable extends Migration
             $table -> id();
             $table -> integer('user_id');
             $table -> integer('round_id');
-            $table -> decimal('bidding_amount', 10, 2);
+            $table -> integer('bidding_amount');
             $table -> string('comment') -> nullable();
             $table -> timestamps();
         });

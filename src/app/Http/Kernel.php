@@ -66,5 +66,8 @@ class Kernel extends HttpKernel
         'api-login'=>\App\Http\Middleware\ApiLogin::class,
         'participants.invite'=>\App\Http\Middleware\InviteParticipants::class,
         'time.restriction'=>\App\Http\Middleware\TimeBasedRestriction::class,
+        'edit.time'=>\App\Http\Middleware\CheckRoundEdit::class,
+        'user.authorization'=>\App\Http\Middleware\GameParticipantAuthorization::class,
+        'change.password'=>\App\Http\Middleware\MustChangePassword::class,
     ];
 }

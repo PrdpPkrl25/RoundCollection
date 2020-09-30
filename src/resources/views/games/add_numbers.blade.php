@@ -4,12 +4,12 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card" style="background-color: rgba(0,0,0,.20);height: 100vh">
-                <div class="card-header">{{ __('Step 1: Add Numbers') }}</div>
+                <div class="card-header">{{ __('Add Numbers:') }}</div>
                 <div class="card-body" >
                     <form method="POST" action="{{route('games.numbers.post')}}">
                         @csrf
 
-                        <div class="card bg-dark text-center" style="margin-top: 15vh;height: 24rem">
+                        <div class="card bg-dark text-center">
                             <div class="card-header">
                                 <ul class="nav nav-tabs card-header-tabs">
                                     <li class="nav-item">
@@ -35,7 +35,7 @@
 
                                         <input id="number_of_participants" type="text"
                                                class="form-control text-center"
-                                               name="number_of_participants" required autofocus>
+                                               name="number_of_participants" required autofocus value="{{$game->number_of_participants ?? ''}}">
                                     </div>
 
                                     <div class="form-group col-md-2 ml-5 mr-5 ">
@@ -44,7 +44,7 @@
 
                                         <input id="total_amount" type="text"
                                                class="form-control text-center"
-                                               name="total_amount" required autofocus>
+                                               name="total_amount" required autofocus value="{{$game->total_amount ?? ''}}">
                                     </div>
 
                                     <div class="form-group col-md-2 ml-5 mr-5">
@@ -53,7 +53,7 @@
 
                                         <input id="each_kista" type="text"
                                                class="form-control text-center"
-                                               name="each_kista" required autofocus>
+                                               name="each_kista" required autofocus value="{{$game->each_kista ?? ''}}">
                                     </div>
 
                                     <div class="form-group col-md-2 ml-5 mr-5">
@@ -63,12 +63,15 @@
 
                                         <input id="bhupa_amount" type="text"
                                                class="form-control text-center"
-                                               name="bhupa_amount" required autofocus>
+                                               name="bhupa_amount" required autofocus value="{{$game->bhupa_amount ?? ''}}">
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer">
                                 <div class="row">
+                                    <div class="col-md-6 text-left">
+                                        <a href="{{ route('games.create') }}" class="btn btn-danger">Previous</a>
+                                    </div>
                                     <div class="col-md-6 text-right">
                                         <button type="submit" class="btn btn-primary">Next</button>
                                     </div>

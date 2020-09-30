@@ -20,12 +20,14 @@ services:
       - laravel
 
   mysql:
-    image: mysql:5.7.29
+    image: mysql:5.7.22
     container_name: mysql
     restart: unless-stopped
     tty: true
     ports:
       - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
     environment:
       MYSQL_DATABASE: dhukuti
       MYSQL_USER: root
@@ -61,7 +63,7 @@ services:
     user: laravel
     networks:
       - laravel
-    entrypoint: ['composer', '--ignore-platform-reqs']
+    entrypoint: ['composer']
 
   npm:
     image: node:13.7

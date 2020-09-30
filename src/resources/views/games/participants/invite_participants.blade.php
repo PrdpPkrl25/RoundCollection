@@ -17,10 +17,10 @@
                                             <p  hidden id="second-count">{{$remaningPlayers}}</p>
                                         </div>
                                         <div class="col-md-4 text-center">
-                                                <input type="text" name="name[]" class="form-control mt-2" placeholder="Enter Participant Name...">
+                                                <input type="text" name="name[]" class="form-control mt-2" value="{{$game->owner->name}}">
                                         </div>
                                         <div class="col-md-6 text-center">
-                                                <input type="text" name="email[]" class="form-control mt-2 mb-2" placeholder="Enter Participant Email...">
+                                                <input type="text" name="email[]" class="form-control mt-2 mb-2" value="{{$game->owner->email}}">
                                         </div>
 
                                     </div>

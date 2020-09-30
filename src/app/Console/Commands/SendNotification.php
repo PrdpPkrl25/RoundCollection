@@ -3,28 +3,29 @@
 namespace App\Console\Commands;
 
 use App\Jobs\QuotationMailJob;
+use App\Jobs\SendNotificationJob;
 use App\Model\Game;
-use App\Model\Quotation;
+use App\Model\Notification;
 use App\Model\Round;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 
-class CheckRound extends Command
+class SendNotification extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'quotation:start';
+    protected $signature = 'notification:send';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Checks Quotation Start Time';
+    protected $description = 'Send all received notification';
 
     /**
      * Create a new command instance.
@@ -43,11 +44,12 @@ class CheckRound extends Command
      */
     public function handle()
     {
-        $rounds=Round::where('quotation_open_time',now()->format('Y-m-d H:i'))->whereNull('winner_quotation_id')->get();
-        foreach ($rounds as $round){
-            $participants=$round->game->participants()->get();
-            QuotationMailJob::dispatch($participants,$round);
+        $notifications=Notification::whereNull('send_at')->get();
+        foreach ($notifications as $notification){
+            SendNotificationJob::dispatch($notification);
+
         }
+
         return 0;
     }
 }

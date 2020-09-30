@@ -65,11 +65,17 @@ class RoundController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Round  $round
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Round $round)
     {
-        //
+        $round->quotation_open_time=$request->all()['quotation_open_time'];
+        $round->quotation_end_time=$request->all()['quotation_end_time'];
+        $round->round_open_time=$request->all()['round_open_time'];
+        $round->minimum_bid_amount=$request->all()['minimum_bid_amount'];
+        $round->bhupa_amount=$request->all()['bhupa_amount'];
+        $round->save();
+        return redirect()->route('games.show.details',$round->game->id);
     }
 
     /**
